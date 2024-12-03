@@ -4,8 +4,8 @@ import { ISignUp } from '../interfaces/userSignup';
 import { newUserSignUpValidator } from '../validation/auth';
 import * as userService from './user_Service';
 
-export const signUp = async ({ email, password, personalInformation }: DocumentDefinition<ISignUp>) => {
-  const { errors, isValid } = newUserSignUpValidator({ email, password });
+export const signUp = async ({ email, password, name }: DocumentDefinition<ISignUp>) => {
+  const { errors, isValid } = newUserSignUpValidator({ email, password, name });
   if (!isValid)
     return {
       statusCode: 400,
@@ -25,7 +25,7 @@ export const signUp = async ({ email, password, personalInformation }: DocumentD
   const data = {
     email,
     password: encryptedPassword,
-    personalInformation,
+    name,
     timeAccountCreation: Date.now(),
     createdAt: new Date().toLocaleString(),
   };
@@ -33,7 +33,7 @@ export const signUp = async ({ email, password, personalInformation }: DocumentD
   const user = await userService.create(data);
   const res = {
     email,
-    personalInformation,
+    name,
     timeAccountCreation: Date.now(),
     createdAt: new Date().toLocaleString(),
   };

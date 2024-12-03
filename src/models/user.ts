@@ -10,14 +10,7 @@ const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   token: { type: String },
-  personalInformation: {
-    firstName: String,
-    lastName: String,
-    dob: String,
-    Address: String,
-    zipCode: Number,
-    cnic: { type: Number, unique: true },
-  },
+  name: { type: String, unique: true, required: true },
 });
 
 export const User = mongoose.model('user', userSchema);

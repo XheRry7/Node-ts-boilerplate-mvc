@@ -18,7 +18,7 @@ export const Login = async (req: Request, res: Response) => {
       const data = {
         token,
         email,
-        personalInformation: user?.personalInformation,
+        name: user.name,
         timeAccountCreation: Date.now(),
         createdAt: new Date().toLocaleString(),
       };
